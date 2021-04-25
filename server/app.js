@@ -13,7 +13,7 @@ const url = require('url');
 const csrf = require('csurf');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
-const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
+const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/CharacterMaker';
 
 const mongooseOptions = {
   useNewUrlParser: true,
@@ -58,7 +58,7 @@ app.use(session({
   store: new RedisStore({
     client: redisClient,
   }),
-  secret: 'Domo Arigato',
+  secret: 'Jazz Hands',
   resave: true,
   saveUninitialized: true,
   cookie: {
