@@ -22,6 +22,16 @@ const CharacterSchema = new mongoose.Schema({
     required: true,
   },
 
+  class: {
+    type: String,
+    required: true,
+  },
+
+  subclass: {
+    type: String,
+    required: true,
+  },
+
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
@@ -37,6 +47,8 @@ const CharacterSchema = new mongoose.Schema({
 CharacterSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
+  class: doc.class,
+  subclass: doc.subclass,
 });
 
 CharacterSchema.statics.findByOwner = (ownerId, callback) => {
@@ -44,10 +56,10 @@ CharacterSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
 
-  return CharacterModel.find(search).select('name age').lean().exec(callback);
+  return CharacterModel.find(search).select('name age class subclass').lean().exec(callback);
 };
 
-CharacterModel = mongoose.model('Domo', CharacterSchema);
+CharacterModel = mongoose.model('Character', CharacterSchema);
 
 module.exports.CharacterModel = CharacterModel;
 module.exports.CharacterSchema = CharacterSchema;
