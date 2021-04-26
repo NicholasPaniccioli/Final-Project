@@ -1,3 +1,5 @@
+const { select } = require("underscore");
+
 const handleCharacter = (e) =>{
     e.preventDefault();
 
@@ -28,6 +30,15 @@ const characterForm = (props) => {
             <input id="characterName" type="text" name="name" placeholder="Character Name"/>
             <label htmlFor="age">Age: </label>
             <input id="characterAge" type="text" name="age" placeholder="Character Age"/>
+            <label id="characterClass" type="text" name="class" placeholder="Character Class"/>
+            <select id="subClassSelect">
+                <option value="wizard">Wizard</option>
+            </select>
+            <label id="characterSubclass" type="text" name="subclass" placeholder="Character Subclass"></label>
+            <select id="subClassSelect">
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+            </select>
             <input type="hidden" name="_csrf" value={props.csrf}/>
             <input className = "makeCharacterSubmit" type="submit" value="Make Character"/>
         </form>
@@ -51,6 +62,8 @@ const characterList = function(props) {
                 <img src="/assets/img/domoface.jpeg" alt="character face" className="characterFace"/>
                 <h3 className="characterName"> Name: {character.name}</h3>
                 <h3 className="characterAge"> Age: {character.age}</h3>
+                <h3 className="characterClass"> Class: {character.class}</h3>
+                <h3 className="characterSubclass"> Subclass: {character.subclass}</h3>
             </div>
         );
     });

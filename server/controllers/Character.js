@@ -21,6 +21,8 @@ const makeCharacter = (req, res) => {
   const characterData = {
     name: req.body.name,
     age: req.body.age,
+    class: req.body.class,
+    subclass: req.body.subclass,
     owner: req.session.account._id,
   };
 

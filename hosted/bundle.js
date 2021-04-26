@@ -39,6 +39,20 @@ var CharacterForm = function CharacterForm(props) {
       type: "text",
       name: "age",
       placeholder: "Character Age"
+    }),/*#__PURE__*/React.createElement("label", {
+      htmlFor: "class"
+    }, "Class: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterClass",
+      type: "text",
+      name: "class",
+      placeholder: "Character Class"
+    }),/*#__PURE__*/React.createElement("label", {
+      htmlFor: "subclass"
+    }, "Subclass: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterSubclass",
+      type: "text",
+      name: "subclass",
+      placeholder: "Character Subclass"
     }), /*#__PURE__*/React.createElement("input", {
       type: "hidden",
       name: "_csrf",
