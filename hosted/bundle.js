@@ -1,5 +1,8 @@
 "use strict";
 
+var _require = require("underscore"),
+    select = _require.select;
+
 var handleCharacter = function handleCharacter(e) {
   e.preventDefault();
   $("#characterMessage").animate({
@@ -17,7 +20,7 @@ var handleCharacter = function handleCharacter(e) {
   return false;
 };
 
-var CharacterForm = function CharacterForm(props) {
+var characterForm = function characterForm(props) {
   return (/*#__PURE__*/React.createElement("form", {
       id: "characterForm",
       onSubmit: handleCharacter,
@@ -39,21 +42,27 @@ var CharacterForm = function CharacterForm(props) {
       type: "text",
       name: "age",
       placeholder: "Character Age"
-    }),/*#__PURE__*/React.createElement("label", {
-      htmlFor: "class"
-    }, "Class: "), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("label", {
       id: "characterClass",
       type: "text",
       name: "class",
       placeholder: "Character Class"
-    }),/*#__PURE__*/React.createElement("label", {
-      htmlFor: "subclass"
-    }, "Subclass: "), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("select", {
+      id: "subClassSelect"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "wizard"
+    }, "Wizard")), /*#__PURE__*/React.createElement("label", {
       id: "characterSubclass",
       type: "text",
       name: "subclass",
       placeholder: "Character Subclass"
-    }), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("select", {
+      id: "subClassSelect"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "fire"
+    }, "Fire"), /*#__PURE__*/React.createElement("option", {
+      value: "water"
+    }, "Water")), /*#__PURE__*/React.createElement("input", {
       type: "hidden",
       name: "_csrf",
       value: props.csrf
@@ -65,22 +74,21 @@ var CharacterForm = function CharacterForm(props) {
   );
 };
 
-var CharacterList = function CharacterList(props) {
+var characterList = function characterList(props) {
   if (props.characters.length === 0) {
     return (/*#__PURE__*/React.createElement("div", {
         className: "characterList"
       }, /*#__PURE__*/React.createElement("h3", {
         className: "emptyCharacter"
-      }, "No Characters yet"))
+      }, "No characters yet"))
     );
   }
 
-  var characterNodes = props.characters.map(function (character) {
+  var characterNodes = props.character.map(function (character) {
     return (/*#__PURE__*/React.createElement("div", {
         key: character._id,
         className: "character"
       }, /*#__PURE__*/React.createElement("img", {
-        //IMPORTANT change later
         src: "/assets/img/domoface.jpeg",
         alt: "character face",
         className: "characterFace"
@@ -88,7 +96,11 @@ var CharacterList = function CharacterList(props) {
         className: "characterName"
       }, " Name: ", character.name), /*#__PURE__*/React.createElement("h3", {
         className: "characterAge"
-      }, " Age: ", character.age))
+      }, " Age: ", character.age), /*#__PURE__*/React.createElement("h3", {
+        className: "characterClass"
+      }, " Class: ", character["class"]), /*#__PURE__*/React.createElement("h3", {
+        className: "characterSubclass"
+      }, " Subclass: ", character.subclass))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
@@ -99,17 +111,17 @@ var CharacterList = function CharacterList(props) {
 
 var loadCharactersFromServer = function loadCharactersFromServer() {
   sendAjax('GET', '/getCharacters', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
+    ReactDOM.render( /*#__PURE__*/React.createElement("characterList", {
       characters: data.characters
     }), document.querySelector("#characters"));
   });
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement(CharacterForm, {
+  ReactDOM.render( /*#__PURE__*/React.createElement("characterForm", {
     csrf: csrf
   }), document.querySelector("#makeCharacter"));
-  ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
+  ReactDOM.render( /*#__PURE__*/React.createElement("characterList", {
     characters: []
   }), document.querySelector("#characters"));
   loadCharactersFromServer();
