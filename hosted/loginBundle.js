@@ -74,8 +74,8 @@ var SignupWindow = function SignupWindow(props) {
   return (/*#__PURE__*/React.createElement("form", {
       id: "signupForm",
       name: "signupForm",
-      action: "/signup",
       onSubmit: handleSignup,
+      action: "/signup",
       method: "POST",
       className: "mainForm"
     }, /*#__PURE__*/React.createElement("label", {

@@ -1,8 +1,5 @@
 "use strict";
 
-var _require = require("underscore"),
-    select = _require.select;
-
 var handleCharacter = function handleCharacter(e) {
   e.preventDefault();
   $("#characterMessage").animate({
@@ -20,7 +17,7 @@ var handleCharacter = function handleCharacter(e) {
   return false;
 };
 
-var characterForm = function characterForm(props) {
+var CharacterForm = function CharacterForm(props) {
   return (/*#__PURE__*/React.createElement("form", {
       id: "characterForm",
       onSubmit: handleCharacter,
@@ -74,7 +71,7 @@ var characterForm = function characterForm(props) {
   );
 };
 
-var characterList = function characterList(props) {
+var CharacterList = function CharacterList(props) {
   if (props.characters.length === 0) {
     return (/*#__PURE__*/React.createElement("div", {
         className: "characterList"
@@ -111,17 +108,17 @@ var characterList = function characterList(props) {
 
 var loadCharactersFromServer = function loadCharactersFromServer() {
   sendAjax('GET', '/getCharacters', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement("characterList", {
+    ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
       characters: data.characters
     }), document.querySelector("#characters"));
   });
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement("characterForm", {
+  ReactDOM.render( /*#__PURE__*/React.createElement(CharacterForm, {
     csrf: csrf
   }), document.querySelector("#makeCharacter"));
-  ReactDOM.render( /*#__PURE__*/React.createElement("characterList", {
+  ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
     characters: []
   }), document.querySelector("#characters"));
   loadCharactersFromServer();

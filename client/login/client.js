@@ -57,8 +57,8 @@ const SignupWindow = (props) => {
     return (
         <form id="signupForm" 
             name="signupForm"
-            action="/signup"
             onSubmit={handleSignup}
+            action="/signup"
             method="POST"
             className="mainForm"
         >
@@ -114,6 +114,6 @@ const getToken = () => {
     });
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
     getToken();
 });

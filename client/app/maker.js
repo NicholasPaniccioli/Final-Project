@@ -17,7 +17,7 @@ const handleCharacter = (e) =>{
     return false;
 };
 
-const characterForm = (props) => {
+const CharacterForm = (props) => {
     return (
         <form id="characterForm"
             onSubmit={handleCharacter}
@@ -45,7 +45,7 @@ const characterForm = (props) => {
     );
 };
 
-const characterList = function(props) {
+const CharacterList = function(props) {
     if(props.characters.length === 0){
         return(
             <div className="characterList">
@@ -78,18 +78,18 @@ const characterList = function(props) {
 const loadCharactersFromServer = () => {
     sendAjax('GET', '/getCharacters', null, (data) => {
         ReactDOM.render(
-            <characterList characters={data.characters} />, document.querySelector("#characters")
+            <CharacterList characters={data.characters} />, document.querySelector("#characters")
         );
     });
 };
 
 const setup = function(csrf) {
     ReactDOM.render(
-        <characterForm csrf={csrf} />, document.querySelector("#makeCharacter")
+        <CharacterForm csrf={csrf} />, document.querySelector("#makeCharacter")
     );
 
     ReactDOM.render(
-        <characterList characters={[]} />, document.querySelector("#characters")
+        <CharacterList characters={[]} />, document.querySelector("#characters")
     );
 
     loadCharactersFromServer();
