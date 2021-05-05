@@ -68,6 +68,9 @@ const CharacterList = function(props) {
                 <h3 className="characterAge"> Age: {character.age}</h3>
                 <h3 className="characterClass"> Class: {character.class}</h3>
                 <h3 className="characterSubclass"> Subclass: {character.subclass}</h3>
+                <h3 className="characterHealth"> Health: {character.health}</h3>
+                <h3 className="characterDamage"> Damage: {character.damage}</h3>
+                <h3 className="characterEXP"> EXP: {character.exp}</h3>
             </div>
         );
     });

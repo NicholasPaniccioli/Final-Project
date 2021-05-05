@@ -32,6 +32,21 @@ const CharacterSchema = new mongoose.Schema({
     required: true,
   },
 
+  health: {
+    type: Number,
+    required: false,
+  },
+
+  damage: {
+    type: Number,
+    required: false,
+  },
+
+  exp: {
+    type: Number,
+    required: false,
+  },
+
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
@@ -49,6 +64,9 @@ CharacterSchema.statics.toAPI = (doc) => ({
   age: doc.age,
   class: doc.class,
   subclass: doc.subclass,
+  health: doc.health,
+  damage: doc.damage,
+  exp: doc.exp,
 });
 
 CharacterSchema.statics.findByOwner = (ownerId, callback) => {
@@ -56,7 +74,7 @@ CharacterSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
 
-  return CharacterModel.find(search).select('name age class subclass').lean().exec(callback);
+  return CharacterModel.find(search).select('name age class subclass health damage exp').lean().exec(callback);
 };
 
 CharacterModel = mongoose.model('Character', CharacterSchema);

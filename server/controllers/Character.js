@@ -1,5 +1,5 @@
 const models = require('../models');
-// const classHelper = require('./classHelper.js');
+const classHelper = require('./classHelper.js');
 
 const { Character } = models;
 
@@ -22,13 +22,16 @@ const makeCharacter = (req, res) => {
 
   // Using classHelper gets appropriate values to add to character
   // Gives class and subclass to get values
-  // const values = classHelper.classValues(req.body.class, req.body.subclass);
+  const values = classHelper.classValues(req.body.class, req.body.subclass);
 
   const characterData = {
     name: req.body.name,
     age: req.body.age,
     class: req.body.class,
     subclass: req.body.subclass,
+    health: values[0],
+    damage: values[1],
+    exp: values[2],
     owner: req.session.account._id,
   };
 
