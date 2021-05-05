@@ -1,6 +1,7 @@
 const models = require('../models');
-const classHelper = require("./classHelper.js");
-const Character = models.Character;
+// const classHelper = require('./classHelper.js');
+
+const { Character } = models;
 
 const makerPage = (req, res) => {
   Character.CharacterModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -14,14 +15,14 @@ const makerPage = (req, res) => {
 };
 
 const makeCharacter = (req, res) => {
-  //Checks all info is filled
+  // Checks all info is filled
   if (!req.body.name || !req.body.age || !req.body.class || !req.body.subclass) {
     return res.status(400).json({ error: 'Both name and age are required' });
   }
 
-  //Using classHelper gets appropriate values to add to character
-  //Gives class and subclass to get values
-  const values = classHelper.classValues(req.body.class, req.body.subclass);
+  // Using classHelper gets appropriate values to add to character
+  // Gives class and subclass to get values
+  // const values = classHelper.classValues(req.body.class, req.body.subclass);
 
   const characterData = {
     name: req.body.name,
