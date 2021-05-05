@@ -40,21 +40,21 @@ var CharacterForm = function CharacterForm(props) {
       name: "age",
       placeholder: "Character Age"
     }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "class"
+    }, "Class: "), /*#__PURE__*/React.createElement("select", {
       id: "characterClass",
       type: "text",
       name: "class",
       placeholder: "Character Class"
-    }), /*#__PURE__*/React.createElement("select", {
-      id: "subClassSelect"
     }, /*#__PURE__*/React.createElement("option", {
       value: "wizard"
     }, "Wizard")), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "subclass"
+    }, "Subclass: "), /*#__PURE__*/React.createElement("select", {
       id: "characterSubclass",
       type: "text",
       name: "subclass",
       placeholder: "Character Subclass"
-    }), /*#__PURE__*/React.createElement("select", {
-      id: "subClassSelect"
     }, /*#__PURE__*/React.createElement("option", {
       value: "fire"
     }, "Fire"), /*#__PURE__*/React.createElement("option", {
@@ -81,7 +81,7 @@ var CharacterList = function CharacterList(props) {
     );
   }
 
-  var characterNodes = props.character.map(function (character) {
+  var characterNodes = props.characters.map(function (character) {
     return (/*#__PURE__*/React.createElement("div", {
         key: character._id,
         className: "character"

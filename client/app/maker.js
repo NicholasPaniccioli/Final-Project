@@ -28,17 +28,21 @@ const CharacterForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="characterName" type="text" name="name" placeholder="Character Name"/>
+
             <label htmlFor="age">Age: </label>
             <input id="characterAge" type="text" name="age" placeholder="Character Age"/>
-            <label id="characterClass" type="text" name="class" placeholder="Character Class"/>
-            <select id="subClassSelect">
+
+            <label htmlFor="class">Class: </label>
+            <select id="characterClass" type="text" name="class" placeholder="Character Class">
                 <option value="wizard">Wizard</option>
             </select>
-            <label id="characterSubclass" type="text" name="subclass" placeholder="Character Subclass"></label>
-            <select id="subClassSelect">
+
+            <label htmlFor="subclass">Subclass: </label>
+            <select id="characterSubclass" type="text" name="subclass" placeholder="Character Subclass">
                 <option value="fire">Fire</option>
                 <option value="water">Water</option>
             </select>
+            
             <input type="hidden" name="_csrf" value={props.csrf}/>
             <input className = "makeCharacterSubmit" type="submit" value="Make Character"/>
         </form>

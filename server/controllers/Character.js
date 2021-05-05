@@ -1,6 +1,6 @@
 const models = require('../models');
 
-const { Character } = models;
+const Character = models.Character;
 
 const makerPage = (req, res) => {
   Character.CharacterModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -14,7 +14,7 @@ const makerPage = (req, res) => {
 };
 
 const makeCharacter = (req, res) => {
-  if (!req.body.name || !req.body.age) {
+  if (!req.body.name || !req.body.age || !req.body.class || !req.body.subclass) {
     return res.status(400).json({ error: 'Both name and age are required' });
   }
 
