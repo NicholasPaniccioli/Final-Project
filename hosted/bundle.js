@@ -97,7 +97,13 @@ var CharacterList = function CharacterList(props) {
         className: "characterClass"
       }, " Class: ", character["class"]), /*#__PURE__*/React.createElement("h3", {
         className: "characterSubclass"
-      }, " Subclass: ", character.subclass))
+      }, " Subclass: ", character.subclass), /*#__PURE__*/React.createElement("h3", {
+        className: "characterHealth"
+      }, " Health: ", character.health), /*#__PURE__*/React.createElement("h3", {
+        className: "characterDamage"
+      }, " Damage: ", character.damage), /*#__PURE__*/React.createElement("h3", {
+        className: "characterEXP"
+      }, " EXP: ", character.exp))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
