@@ -58,7 +58,7 @@ const CharacterList = function(props) {
         );
     }
 
-    const characterNodes = props.character.map(function(character){
+    const characterNodes = props.characters.map(function(character){
         return(
             <div key={character._id} className="character">
                 {/* IMPORTANT */}
