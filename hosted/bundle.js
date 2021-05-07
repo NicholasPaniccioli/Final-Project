@@ -123,23 +123,61 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
       characters: data.characters
     }), document.querySelector("#characters"));
   });
-}; //Testing for Training room
+}; // const handleTrainer = (e) => {
+//     e.preventDefault();
+//     $("characterMessage").animate({width:'hide'}, 350);
+//     if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == ''){
+//         handleError("All fields are required");
+//         return false;
+//     }
+//     if($("#pass").val() !== $("#pass2").val()){
+//         handleError("Passwords do not match");
+//         return false;
+//     }
+//     sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
+//     return false;
+// };
+//Testing for Training room
 
 
 var TrainWindow = function TrainWindow(props) {
   return (/*#__PURE__*/React.createElement("form", {
       id: "trainForm",
-      name: "trainForm",
-      onSubmit: handleTrainer,
+      name: "trainForm" //onSubmit={handleTrainer}
+      ,
       action: "/trainer",
       method: "POST",
       className: "trainForm"
-    }, /*#__PURE__*/React.createElement("p", null, "Welcome to the Training Room"))
+    }, /*#__PURE__*/React.createElement("select", {
+      id: "characterSelect"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "none"
+    }, "No Characters")), /*#__PURE__*/React.createElement("input", {
+      className: "formTrain",
+      type: "submit",
+      value: "Train"
+    }), /*#__PURE__*/React.createElement("p", null, "Welcome to the Training Room"))
   );
 }; //Fills the select option in training room with available characters
 
 
-var fillTrainSelect = function fillTrainSelect() {//if()
+var fillTrainSelect = function fillTrainSelect(props) {
+  var select = document.querySelector("#characterSelect"); //If no characters stays at default value
+  //If characters available fills selection with them
+
+  if (props.characters.length === 0) {
+    return;
+  } else {
+    //Restarts select list
+    select.innerHTML = ""; //Fills it in
+
+    for (var i = 0; i > prop.characters.length; i++) {
+      var chara = prop.characters[i].name;
+      var option = document.createElement("option");
+      option.innerHTML = chara;
+      select.addEventListener(option);
+    }
+  }
 };
 
 var setup = function setup(csrf) {

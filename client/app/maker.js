@@ -95,24 +95,70 @@ const loadCharactersFromServer = () => {
     });
 };
 
+// const handleTrainer = (e) => {
+//     e.preventDefault();
+
+//     $("characterMessage").animate({width:'hide'}, 350);
+
+//     if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == ''){
+//         handleError("All fields are required");
+//         return false;
+//     }
+
+//     if($("#pass").val() !== $("#pass2").val()){
+//         handleError("Passwords do not match");
+//         return false;
+//     }
+
+//     sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
+
+//     return false;
+// };
+
 //Testing for Training room
 const TrainWindow = (props) => {
     return (
         <form id="trainForm" 
             name="trainForm"
-            onSubmit={handleTrainer}
+            //onSubmit={handleTrainer}
             action="/trainer"
             method="POST"
             className="trainForm"
         >
+
+            <select id="characterSelect">
+                <option value="none">No Characters</option>
+            </select>
+
+            <input className="formTrain" type="submit" value="Train"/>
             <p>Welcome to the Training Room</p>
         </form>
     );
 };
 
 //Fills the select option in training room with available characters
-const fillTrainSelect = () => {
-    //if()
+const fillTrainSelect = function(props){
+
+    let select = document.querySelector("#characterSelect");
+    //If no characters stays at default value
+    //If characters available fills selection with them
+    if(props.characters.length === 0)
+    {
+        return;
+    } else {
+        //Restarts select list
+        select.innerHTML = ""
+
+        //Fills it in
+        for(let i=0; i > prop.characters.length; i++)
+        {
+            let chara = prop.characters[i].name;
+            let option = document.createElement("option");
+            option.innerHTML = chara;
+
+            select.addEventListener(option);
+        }
+    }
 };
 
 const setup = function(csrf) {
