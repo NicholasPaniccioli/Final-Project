@@ -98,28 +98,25 @@ const loadCharactersFromServer = () => {
 //Testing for Training room
 const TrainWindow = (props) => {
     return (
-        // <form id="trainForm" 
-        //     name="trainForm"
-        //     // onSubmit={handleSignup}
-        //     // action="/signup"
-        //     // method="POST"
-        //     className="trainForm"
-        // >
-        <p>Welcome to the Training Room</p>
-
-        //</form>
+        <form id="trainForm" 
+            name="trainForm"
+            onSubmit={handleTrainer}
+            action="/trainer"
+            method="POST"
+            className="trainForm"
+        >
+            <p>Welcome to the Training Room</p>
+        </form>
     );
 };
 
-//Creates training room in window
-const createTrainWindow = (csrf) => {
-    ReactDOM.render(
-        <TrainWindow csrf={csrf} />,
-        document.querySelector("#trainRoom")
-    );
+//Fills the select option in training room with available characters
+const fillTrainSelect = () => {
+    //if()
 };
 
 const setup = function(csrf) {
+    
     ReactDOM.render(
         <CharacterForm csrf={csrf} />, document.querySelector("#makeCharacter")
     );
@@ -128,9 +125,13 @@ const setup = function(csrf) {
         <CharacterList characters={[]} />, document.querySelector("#characters")
     );
 
-    loadCharactersFromServer();
+    ReactDOM.render(
+        <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
+    );
 
-    createTrainWindow(csrf);
+    
+    loadCharactersFromServer();
+    fillTrainSelect();
 };
 
 const getToken = () => {

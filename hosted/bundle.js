@@ -127,25 +127,19 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
 
 
 var TrainWindow = function TrainWindow(props) {
-  return (
-    /*#__PURE__*/
-    // <form id="trainForm" 
-    //     name="trainForm"
-    //     // onSubmit={handleSignup}
-    //     // action="/signup"
-    //     // method="POST"
-    //     className="trainForm"
-    // >
-    React.createElement("p", null, "Welcome to the Training Room") //</form>
-
+  return (/*#__PURE__*/React.createElement("form", {
+      id: "trainForm",
+      name: "trainForm",
+      onSubmit: handleTrainer,
+      action: "/trainer",
+      method: "POST",
+      className: "trainForm"
+    }, /*#__PURE__*/React.createElement("p", null, "Welcome to the Training Room"))
   );
-}; //Creates training room in window
+}; //Fills the select option in training room with available characters
 
 
-var createTrainWindow = function createTrainWindow(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement(TrainWindow, {
-    csrf: csrf
-  }), document.querySelector("#trainRoom"));
+var fillTrainSelect = function fillTrainSelect() {//if()
 };
 
 var setup = function setup(csrf) {
@@ -155,8 +149,11 @@ var setup = function setup(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
     characters: []
   }), document.querySelector("#characters"));
+  ReactDOM.render( /*#__PURE__*/React.createElement(TrainWindow, {
+    csrf: csrf
+  }), document.querySelector("#trainRoom"));
   loadCharactersFromServer();
-  createTrainWindow(csrf);
+  fillTrainSelect();
 };
 
 var getToken = function getToken() {
