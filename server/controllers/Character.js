@@ -1,7 +1,7 @@
 const models = require('../models');
 const classHelper = require('./classHelper.js');
 
-const Character = models.Character;
+const { Character } = models;
 
 const makerPage = (req, res) => {
   Character.CharacterModel.findByOwner(req.session.account._id, (err, docs) => {

@@ -15,6 +15,7 @@ const handleCharacter = (e) =>{
     return false;
 };
 
+//Displays the form for character creation
 const CharacterForm = (props) => {
     return (
         <form id="characterForm"
@@ -47,6 +48,8 @@ const CharacterForm = (props) => {
     );
 };
 
+//Creates list with created characters
+//Also adds upgrade button
 const CharacterList = function(props) {
     if(props.characters.length === 0){
         return(
@@ -69,6 +72,10 @@ const CharacterList = function(props) {
                 <h3 className="characterHealth"> Health: {character.health}</h3>
                 <h3 className="characterDamage"> Damage: {character.damage}</h3>
                 <h3 className="characterEXP"> EXP: {character.exp}</h3>
+
+                <div className="activities">
+                    {/* <button className="upgradeButton">Upgrade</button> */}
+                </div>
             </div>
         );
     });
@@ -88,6 +95,30 @@ const loadCharactersFromServer = () => {
     });
 };
 
+//Testing for Training room
+const TrainWindow = (props) => {
+    return (
+        // <form id="trainForm" 
+        //     name="trainForm"
+        //     // onSubmit={handleSignup}
+        //     // action="/signup"
+        //     // method="POST"
+        //     className="trainForm"
+        // >
+        <p>Welcome to the Training Room</p>
+
+        //</form>
+    );
+};
+
+//Creates training room in window
+const createTrainWindow = (csrf) => {
+    ReactDOM.render(
+        <TrainWindow csrf={csrf} />,
+        document.querySelector("#trainRoom")
+    );
+};
+
 const setup = function(csrf) {
     ReactDOM.render(
         <CharacterForm csrf={csrf} />, document.querySelector("#makeCharacter")
@@ -98,6 +129,8 @@ const setup = function(csrf) {
     );
 
     loadCharactersFromServer();
+
+    createTrainWindow(csrf);
 };
 
 const getToken = () => {

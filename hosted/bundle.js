@@ -15,7 +15,8 @@ var handleCharacter = function handleCharacter(e) {
     loadCharactersFromServer();
   });
   return false;
-};
+}; //Displays the form for character creation
+
 
 var CharacterForm = function CharacterForm(props) {
   return (/*#__PURE__*/React.createElement("form", {
@@ -69,7 +70,9 @@ var CharacterForm = function CharacterForm(props) {
       value: "Make Character"
     }))
   );
-};
+}; //Creates list with created characters
+//Also adds upgrade button
+
 
 var CharacterList = function CharacterList(props) {
   if (props.characters.length === 0) {
@@ -103,7 +106,9 @@ var CharacterList = function CharacterList(props) {
         className: "characterDamage"
       }, " Damage: ", character.damage), /*#__PURE__*/React.createElement("h3", {
         className: "characterEXP"
-      }, " EXP: ", character.exp))
+      }, " EXP: ", character.exp), /*#__PURE__*/React.createElement("div", {
+        className: "activities"
+      }))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
@@ -118,6 +123,29 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
       characters: data.characters
     }), document.querySelector("#characters"));
   });
+}; //Testing for Training room
+
+
+var TrainWindow = function TrainWindow(props) {
+  return (
+    /*#__PURE__*/
+    // <form id="trainForm" 
+    //     name="trainForm"
+    //     // onSubmit={handleSignup}
+    //     // action="/signup"
+    //     // method="POST"
+    //     className="trainForm"
+    // >
+    React.createElement("p", null, "Welcome to the Training Room") //</form>
+
+  );
+}; //Creates training room in window
+
+
+var createTrainWindow = function createTrainWindow(csrf) {
+  ReactDOM.render( /*#__PURE__*/React.createElement(TrainWindow, {
+    csrf: csrf
+  }), document.querySelector("#trainRoom"));
 };
 
 var setup = function setup(csrf) {
@@ -128,6 +156,7 @@ var setup = function setup(csrf) {
     characters: []
   }), document.querySelector("#characters"));
   loadCharactersFromServer();
+  createTrainWindow(csrf);
 };
 
 var getToken = function getToken() {
@@ -139,6 +168,62 @@ var getToken = function getToken() {
 $(document).ready(function () {
   getToken();
 });
+"use strict";
+
+// Creates a window to train characters
+var createTrainWindow = function createTrainWindow(props) {
+  return (/*#__PURE__*/React.createElement("form", {
+      id: "characterForm",
+      onSubmit: handleCharacter,
+      name: "characterForm",
+      action: "/maker",
+      method: "POST",
+      className: "characterForm"
+    }, /*#__PURE__*/React.createElement("label", {
+      htmlFor: "name"
+    }, "Name: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterName",
+      type: "text",
+      name: "name",
+      placeholder: "Character Name"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "age"
+    }, "Age: "), /*#__PURE__*/React.createElement("input", {
+      id: "characterAge",
+      type: "text",
+      name: "age",
+      placeholder: "Character Age"
+    }), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "class"
+    }, "Class: "), /*#__PURE__*/React.createElement("select", {
+      id: "characterClass",
+      type: "text",
+      name: "class",
+      placeholder: "Character Class"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "wizard"
+    }, "Wizard")), /*#__PURE__*/React.createElement("label", {
+      htmlFor: "subclass"
+    }, "Subclass: "), /*#__PURE__*/React.createElement("select", {
+      id: "characterSubclass",
+      type: "text",
+      name: "subclass",
+      placeholder: "Character Subclass"
+    }, /*#__PURE__*/React.createElement("option", {
+      value: "fire"
+    }, "Fire"), /*#__PURE__*/React.createElement("option", {
+      value: "water"
+    }, "Water")), /*#__PURE__*/React.createElement("input", {
+      type: "hidden",
+      name: "_csrf",
+      value: props.csrf
+    }), /*#__PURE__*/React.createElement("input", {
+      className: "makeCharacterSubmit",
+      type: "submit",
+      value: "Make Character"
+    }))
+  );
+};
 "use strict";
 
 var handleError = function handleError(message) {

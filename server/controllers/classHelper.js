@@ -9,7 +9,6 @@ function classValues(Class, Subclass) {
   // If nothing goes to default
   if (Class === 'wizard') {
     if (Subclass === 'fire') {
-
       health = 10;
       damage = 8;
       exp = 0;
@@ -17,8 +16,7 @@ function classValues(Class, Subclass) {
       const values = [health, damage, exp];
 
       return values;
-    }else if (Subclass === 'water') {
-
+    } if (Subclass === 'water') {
       health = 15;
       damage = 6;
       exp = 0;
@@ -33,7 +31,7 @@ function classValues(Class, Subclass) {
   health = 10;
   damage = 5;
   exp = 0;
-  
+
   const values = [health, damage, exp];
 
   return values;
