@@ -123,6 +123,22 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
       characters: data.characters
     }), document.querySelector("#characters"));
   });
+  var select = document.querySelector("#characterSelect"); //If no characters stays at default value
+  //If characters available fills selection with them
+
+  if (characters.length === 0) {
+    return;
+  } else {
+    //Restarts select list
+    select.innerHTML = ""; //Fills it in
+
+    for (var i = 0; i > characters.length; i++) {
+      var chara = characters[i].name;
+      var option = document.createElement("option");
+      option.innerHTML = chara;
+      select.addEventListener(option);
+    }
+  }
 }; // const handleTrainer = (e) => {
 //     e.preventDefault();
 //     $("characterMessage").animate({width:'hide'}, 350);
@@ -158,27 +174,28 @@ var TrainWindow = function TrainWindow(props) {
       value: "Train"
     }), /*#__PURE__*/React.createElement("p", null, "Welcome to the Training Room"))
   );
-}; //Fills the select option in training room with available characters
+}; // //Fills the select option in training room with available characters
+// const fillTrainSelect = function(props){
+//     let select = document.querySelector("#characterSelect");
+//     //If no characters stays at default value
+//     //If characters available fills selection with them
+//     if(props.characters.length === 0)
+//     {
+//         return;
+//     } else {
+//         //Restarts select list
+//         select.innerHTML = ""
+//         //Fills it in
+//         for(let i=0; i > prop.characters.length; i++)
+//         {
+//             let chara = prop.characters[i].name;
+//             let option = document.createElement("option");
+//             option.innerHTML = chara;
+//             select.addEventListener(option);
+//         }
+//     }
+// };
 
-
-var fillTrainSelect = function fillTrainSelect(props) {
-  var select = document.querySelector("#characterSelect"); //If no characters stays at default value
-  //If characters available fills selection with them
-
-  if (props.characters.length === 0) {
-    return;
-  } else {
-    //Restarts select list
-    select.innerHTML = ""; //Fills it in
-
-    for (var i = 0; i > prop.characters.length; i++) {
-      var chara = prop.characters[i].name;
-      var option = document.createElement("option");
-      option.innerHTML = chara;
-      select.addEventListener(option);
-    }
-  }
-};
 
 var setup = function setup(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(CharacterForm, {
@@ -190,8 +207,7 @@ var setup = function setup(csrf) {
   ReactDOM.render( /*#__PURE__*/React.createElement(TrainWindow, {
     csrf: csrf
   }), document.querySelector("#trainRoom"));
-  loadCharactersFromServer();
-  fillTrainSelect();
+  loadCharactersFromServer(); //fillTrainSelect();
 };
 
 var getToken = function getToken() {

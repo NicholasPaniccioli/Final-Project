@@ -93,6 +93,27 @@ const loadCharactersFromServer = () => {
             <CharacterList characters={data.characters} />, document.querySelector("#characters")
         );
     });
+
+    let select = document.querySelector("#characterSelect");
+    //If no characters stays at default value
+    //If characters available fills selection with them
+    if(characters.length === 0)
+    {
+        return;
+    } else {
+        //Restarts select list
+        select.innerHTML = ""
+
+        //Fills it in
+        for(let i=0; i > characters.length; i++)
+        {
+            let chara = characters[i].name;
+            let option = document.createElement("option");
+            option.innerHTML = chara;
+
+            select.addEventListener(option);
+        }
+    }
 };
 
 // const handleTrainer = (e) => {
@@ -136,30 +157,30 @@ const TrainWindow = (props) => {
     );
 };
 
-//Fills the select option in training room with available characters
-const fillTrainSelect = function(props){
+// //Fills the select option in training room with available characters
+// const fillTrainSelect = function(props){
 
-    let select = document.querySelector("#characterSelect");
-    //If no characters stays at default value
-    //If characters available fills selection with them
-    if(props.characters.length === 0)
-    {
-        return;
-    } else {
-        //Restarts select list
-        select.innerHTML = ""
+//     let select = document.querySelector("#characterSelect");
+//     //If no characters stays at default value
+//     //If characters available fills selection with them
+//     if(props.characters.length === 0)
+//     {
+//         return;
+//     } else {
+//         //Restarts select list
+//         select.innerHTML = ""
 
-        //Fills it in
-        for(let i=0; i > prop.characters.length; i++)
-        {
-            let chara = prop.characters[i].name;
-            let option = document.createElement("option");
-            option.innerHTML = chara;
+//         //Fills it in
+//         for(let i=0; i > prop.characters.length; i++)
+//         {
+//             let chara = prop.characters[i].name;
+//             let option = document.createElement("option");
+//             option.innerHTML = chara;
 
-            select.addEventListener(option);
-        }
-    }
-};
+//             select.addEventListener(option);
+//         }
+//     }
+// };
 
 const setup = function(csrf) {
     
@@ -177,7 +198,7 @@ const setup = function(csrf) {
 
     
     loadCharactersFromServer();
-    fillTrainSelect();
+    //fillTrainSelect();
 };
 
 const getToken = () => {
