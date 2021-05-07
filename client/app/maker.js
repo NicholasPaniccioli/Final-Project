@@ -1,5 +1,3 @@
-const { select } = require("underscore");
-
 const handleCharacter = (e) =>{
     e.preventDefault();
 
