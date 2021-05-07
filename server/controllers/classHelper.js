@@ -1,24 +1,29 @@
 // Takes class and subclass of character to distribute appropriate values
-// Values = Health, Attack, EXP
+// Values = Health, Damage, EXP
 function classValues(Class, Subclass) {
   let health;
-  let attack;
+  let damage;
   let exp;
-  const values = [health, attack, exp];
 
   // Checks class then subclass
   // If nothing goes to default
   if (Class === 'wizard') {
     if (Subclass === 'fire') {
+
       health = 10;
-      attack = 8;
+      damage = 8;
       exp = 0;
 
+      const values = [health, damage, exp];
+
       return values;
-    } if (Subclass === 'water') {
+    }else if (Subclass === 'water') {
+
       health = 15;
-      attack = 6;
+      damage = 6;
       exp = 0;
+
+      const values = [health, damage, exp];
 
       return values;
     }
@@ -26,8 +31,10 @@ function classValues(Class, Subclass) {
 
   // Default
   health = 10;
-  attack = 5;
+  damage = 5;
   exp = 0;
+  
+  const values = [health, damage, exp];
 
   return values;
 }
