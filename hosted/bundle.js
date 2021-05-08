@@ -26,6 +26,10 @@ var CharacterForm = function CharacterForm(props) {
       action: "/maker",
       method: "POST",
       className: "characterForm"
+    }, /*#__PURE__*/React.createElement("div", {
+      id: "info"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "items"
     }, /*#__PURE__*/React.createElement("label", {
       htmlFor: "name"
     }, "Name: "), /*#__PURE__*/React.createElement("input", {
@@ -33,14 +37,18 @@ var CharacterForm = function CharacterForm(props) {
       type: "text",
       name: "name",
       placeholder: "Character Name"
-    }), /*#__PURE__*/React.createElement("label", {
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "items"
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: "age"
     }, "Age: "), /*#__PURE__*/React.createElement("input", {
       id: "characterAge",
       type: "text",
       name: "age",
       placeholder: "Character Age"
-    }), /*#__PURE__*/React.createElement("label", {
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "items"
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: "class"
     }, "Class: "), /*#__PURE__*/React.createElement("select", {
       id: "characterClass",
@@ -49,7 +57,9 @@ var CharacterForm = function CharacterForm(props) {
       placeholder: "Character Class"
     }, /*#__PURE__*/React.createElement("option", {
       value: "wizard"
-    }, "Wizard")), /*#__PURE__*/React.createElement("label", {
+    }, "Wizard"))), /*#__PURE__*/React.createElement("div", {
+      className: "items"
+    }, /*#__PURE__*/React.createElement("label", {
       htmlFor: "subclass"
     }, "Subclass: "), /*#__PURE__*/React.createElement("select", {
       id: "characterSubclass",
@@ -60,15 +70,17 @@ var CharacterForm = function CharacterForm(props) {
       value: "fire"
     }, "Fire"), /*#__PURE__*/React.createElement("option", {
       value: "water"
-    }, "Water")), /*#__PURE__*/React.createElement("input", {
+    }, "Water")))), /*#__PURE__*/React.createElement("input", {
       type: "hidden",
       name: "_csrf",
       value: props.csrf
-    }), /*#__PURE__*/React.createElement("input", {
+    }), /*#__PURE__*/React.createElement("div", {
+      id: "submit"
+    }, /*#__PURE__*/React.createElement("input", {
       className: "makeCharacterSubmit",
       type: "submit",
       value: "Make Character"
-    }))
+    })))
   );
 }; //Creates list with created characters
 //Also adds upgrade button

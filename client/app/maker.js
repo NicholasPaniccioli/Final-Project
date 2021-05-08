@@ -25,25 +25,38 @@ const CharacterForm = (props) => {
             method="POST"
             className="characterForm"
         >
-            <label htmlFor="name">Name: </label>
-            <input id="characterName" type="text" name="name" placeholder="Character Name"/>
+            <div id="info">
+                <div className="items">
+                <label htmlFor="name">Name: </label>
+                <input id="characterName" type="text" name="name" placeholder="Character Name"/>
+                </div>
 
-            <label htmlFor="age">Age: </label>
-            <input id="characterAge" type="text" name="age" placeholder="Character Age"/>
+                <div className="items">
+                <label htmlFor="age">Age: </label>
+                <input id="characterAge" type="text" name="age" placeholder="Character Age"/>
+                </div>
 
-            <label htmlFor="class">Class: </label>
-            <select id="characterClass" type="text" name="class" placeholder="Character Class">
-                <option value="wizard">Wizard</option>
-            </select>
+                <div className="items">
+                <label htmlFor="class">Class: </label>
+                <select id="characterClass" type="text" name="class" placeholder="Character Class">
+                    <option value="wizard">Wizard</option>
+                </select>
+                </div>
 
-            <label htmlFor="subclass">Subclass: </label>
-            <select id="characterSubclass" type="text" name="subclass" placeholder="Character Subclass">
-                <option value="fire">Fire</option>
-                <option value="water">Water</option>
-            </select>
+                <div className="items">
+                <label htmlFor="subclass">Subclass: </label>
+                <select id="characterSubclass" type="text" name="subclass" placeholder="Character Subclass">
+                    <option value="fire">Fire</option>
+                    <option value="water">Water</option>
+                </select>
+                </div>
+            </div>
             
             <input type="hidden" name="_csrf" value={props.csrf}/>
+
+            <div id ="submit">
             <input className = "makeCharacterSubmit" type="submit" value="Make Character"/>
+            </div>
         </form>
     );
 };
