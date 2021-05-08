@@ -77,7 +77,7 @@ const CharacterList = function(props) {
             <div key={character._id} className="character">
                 {/* IMPORTANT */}
                 {/* Needs to be changed to no longer ref domo */}
-                <img src="/assets/img/box.png" alt="character face" className="characterFace"/>
+                <img src="/assets/img/hat.png" alt="character hat" className="characterHat"/>
                 <h3 className="characterName"> Name: {character.name}</h3>
                 <h3 className="characterAge"> Age: {character.age}</h3>
                 <h3 className="characterClass"> Class: {character.class}</h3>

@@ -101,9 +101,9 @@ var CharacterList = function CharacterList(props) {
         key: character._id,
         className: "character"
       }, /*#__PURE__*/React.createElement("img", {
-        src: "/assets/img/box.png",
-        alt: "character face",
-        className: "characterFace"
+        src: "/assets/img/hat.png",
+        alt: "character hat",
+        className: "characterHat"
       }), /*#__PURE__*/React.createElement("h3", {
         className: "characterName"
       }, " Name: ", character.name), /*#__PURE__*/React.createElement("h3", {
