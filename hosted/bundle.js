@@ -108,7 +108,10 @@ var CharacterList = function CharacterList(props) {
         className: "characterEXP"
       }, " EXP: ", character.exp), /*#__PURE__*/React.createElement("div", {
         className: "activities"
-      }))
+      }, /*#__PURE__*/React.createElement("button", {
+        className: "trainButton",
+        value: character
+      }, "Train")))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
@@ -122,23 +125,24 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
     ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
       characters: data.characters
     }), document.querySelector("#characters"));
-  });
-  var select = document.querySelector("#characterSelect"); //If no characters stays at default value
-  //If characters available fills selection with them
-
-  if (characters.length === 0) {
-    return;
-  } else {
-    //Restarts select list
-    select.innerHTML = ""; //Fills it in
-
-    for (var i = 0; i > characters.length; i++) {
-      var chara = characters[i].name;
-      var option = document.createElement("option");
-      option.innerHTML = chara;
-      select.addEventListener(option);
-    }
-  }
+  }); // let select = document.querySelector("#characterSelect");
+  // //If no characters stays at default value
+  // //If characters available fills selection with them
+  // if(characters.length === 0)
+  // {
+  //     return;
+  // } else {
+  //     //Restarts select list
+  //     select.innerHTML = ""
+  //     //Fills it in
+  //     for(let i=0; i > characters.length; i++)
+  //     {
+  //         let chara = characters[i].name;
+  //         let option = document.createElement("option");
+  //         option.innerHTML = chara;
+  //         select.addEventListener(option);
+  //     }
+  // }
 }; // const handleTrainer = (e) => {
 //     e.preventDefault();
 //     $("characterMessage").animate({width:'hide'}, 350);
@@ -153,28 +157,25 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
 //     sendAjax('POST', $("#signupForm").attr("action"), $("#signupForm").serialize(), redirect);
 //     return false;
 // };
-//Testing for Training room
-
-
-var TrainWindow = function TrainWindow(props) {
-  return (/*#__PURE__*/React.createElement("form", {
-      id: "trainForm",
-      name: "trainForm" //onSubmit={handleTrainer}
-      ,
-      action: "/trainer",
-      method: "POST",
-      className: "trainForm"
-    }, /*#__PURE__*/React.createElement("select", {
-      id: "characterSelect"
-    }, /*#__PURE__*/React.createElement("option", {
-      value: "none"
-    }, "No Characters")), /*#__PURE__*/React.createElement("input", {
-      className: "formTrain",
-      type: "submit",
-      value: "Train"
-    }), /*#__PURE__*/React.createElement("p", null, "Welcome to the Training Room"))
-  );
-}; // //Fills the select option in training room with available characters
+// //Testing for Training room
+// const TrainWindow = (props) => {
+//     return (
+//         <form id="trainForm" 
+//             name="trainForm"
+//             //onSubmit={handleTrainer}
+//             action="/trainer"
+//             method="POST"
+//             className="trainForm"
+//         >
+//             <select id="characterSelect">
+//                 <option value="none">No Characters</option>
+//             </select>
+//             <input className="formTrain" type="submit" value="Train"/>
+//             <p>Welcome to the Training Room</p>
+//         </form>
+//     );
+// };
+// //Fills the select option in training room with available characters
 // const fillTrainSelect = function(props){
 //     let select = document.querySelector("#characterSelect");
 //     //If no characters stays at default value
@@ -203,11 +204,18 @@ var setup = function setup(csrf) {
   }), document.querySelector("#makeCharacter"));
   ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
     characters: []
-  }), document.querySelector("#characters"));
-  ReactDOM.render( /*#__PURE__*/React.createElement(TrainWindow, {
-    csrf: csrf
-  }), document.querySelector("#trainRoom"));
-  loadCharactersFromServer(); //fillTrainSelect();
+  }), document.querySelector("#characters")); // ReactDOM.render(
+  //     <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
+  // );
+
+  loadCharactersFromServer();
+  var trainButton = document.querySelector(".trainButton");
+  trainButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("button clicked");
+    trainButton.value.exp += 10;
+    return false;
+  }); //fillTrainSelect();
 };
 
 var getToken = function getToken() {

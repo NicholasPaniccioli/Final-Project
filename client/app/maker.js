@@ -74,6 +74,7 @@ const CharacterList = function(props) {
                 <h3 className="characterEXP"> EXP: {character.exp}</h3>
 
                 <div className="activities">
+                    <button className="trainButton" value={character}>Train</button>
                     {/* <button className="upgradeButton">Upgrade</button> */}
                 </div>
             </div>
@@ -94,26 +95,26 @@ const loadCharactersFromServer = () => {
         );
     });
 
-    let select = document.querySelector("#characterSelect");
-    //If no characters stays at default value
-    //If characters available fills selection with them
-    if(characters.length === 0)
-    {
-        return;
-    } else {
-        //Restarts select list
-        select.innerHTML = ""
+    // let select = document.querySelector("#characterSelect");
+    // //If no characters stays at default value
+    // //If characters available fills selection with them
+    // if(characters.length === 0)
+    // {
+    //     return;
+    // } else {
+    //     //Restarts select list
+    //     select.innerHTML = ""
 
-        //Fills it in
-        for(let i=0; i > characters.length; i++)
-        {
-            let chara = characters[i].name;
-            let option = document.createElement("option");
-            option.innerHTML = chara;
+    //     //Fills it in
+    //     for(let i=0; i > characters.length; i++)
+    //     {
+    //         let chara = characters[i].name;
+    //         let option = document.createElement("option");
+    //         option.innerHTML = chara;
 
-            select.addEventListener(option);
-        }
-    }
+    //         select.addEventListener(option);
+    //     }
+    // }
 };
 
 // const handleTrainer = (e) => {
@@ -136,26 +137,26 @@ const loadCharactersFromServer = () => {
 //     return false;
 // };
 
-//Testing for Training room
-const TrainWindow = (props) => {
-    return (
-        <form id="trainForm" 
-            name="trainForm"
-            //onSubmit={handleTrainer}
-            action="/trainer"
-            method="POST"
-            className="trainForm"
-        >
+// //Testing for Training room
+// const TrainWindow = (props) => {
+//     return (
+//         <form id="trainForm" 
+//             name="trainForm"
+//             //onSubmit={handleTrainer}
+//             action="/trainer"
+//             method="POST"
+//             className="trainForm"
+//         >
 
-            <select id="characterSelect">
-                <option value="none">No Characters</option>
-            </select>
+//             <select id="characterSelect">
+//                 <option value="none">No Characters</option>
+//             </select>
 
-            <input className="formTrain" type="submit" value="Train"/>
-            <p>Welcome to the Training Room</p>
-        </form>
-    );
-};
+//             <input className="formTrain" type="submit" value="Train"/>
+//             <p>Welcome to the Training Room</p>
+//         </form>
+//     );
+// };
 
 // //Fills the select option in training room with available characters
 // const fillTrainSelect = function(props){
@@ -192,12 +193,19 @@ const setup = function(csrf) {
         <CharacterList characters={[]} />, document.querySelector("#characters")
     );
 
-    ReactDOM.render(
-        <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
-    );
-
+    // ReactDOM.render(
+    //     <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
+    // );
     
     loadCharactersFromServer();
+    
+    const trainButton = document.querySelector(".trainButton");
+    trainButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("button clicked");
+        trainButton.value.exp +=10;
+        return false;
+    });
     //fillTrainSelect();
 };
 
