@@ -87,9 +87,20 @@ const CharacterList = function(props) {
                 <h3 className="characterEXP"> EXP: {character.exp}</h3>
 
                 <div className="activities">
-                    <button className="trainButton" value={character}>Train</button>
                     {/* <button className="upgradeButton">Upgrade</button> */}
                 </div>
+
+                <form id="trainForm" 
+                    name="trainForm"
+                    //onSubmit={handleTrainer}
+                    action="/trainer"
+                    method="POST"
+                    className="trainForm"
+                >
+                    <input type="hidden" name="_csrf" value={props.csrf}/>
+                    <button className="trainButton" type="submit" value={character._id}>Train</button>
+
+                </form>
             </div>
         );
     });
@@ -107,29 +118,9 @@ const loadCharactersFromServer = () => {
             <CharacterList characters={data.characters} />, document.querySelector("#characters")
         );
     });
-
-    // let select = document.querySelector("#characterSelect");
-    // //If no characters stays at default value
-    // //If characters available fills selection with them
-    // if(characters.length === 0)
-    // {
-    //     return;
-    // } else {
-    //     //Restarts select list
-    //     select.innerHTML = ""
-
-    //     //Fills it in
-    //     for(let i=0; i > characters.length; i++)
-    //     {
-    //         let chara = characters[i].name;
-    //         let option = document.createElement("option");
-    //         option.innerHTML = chara;
-
-    //         select.addEventListener(option);
-    //     }
-    // }
 };
 
+//Will be used to check if character has enough health
 // const handleTrainer = (e) => {
 //     e.preventDefault();
 
@@ -205,20 +196,8 @@ const setup = function(csrf) {
     ReactDOM.render(
         <CharacterList characters={[]} />, document.querySelector("#characters")
     );
-
-    // ReactDOM.render(
-    //     <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
-    // );
     
     loadCharactersFromServer();
-    
-    const trainButton = document.querySelector(".trainButton");
-    trainButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log("button clicked");
-        trainButton.value.exp +=10;
-        return false;
-    });
     //fillTrainSelect();
 };
 

@@ -53,6 +53,20 @@ const makeCharacter = (req, res) => {
   return characterPromise;
 };
 
+//Gives character EXP
+const trainCharacter = (req, res) => {
+
+  //Checks if they have health left to fight
+  if (!req.body.health === 0){
+    return res.status(400).json({ error: 'Your character needs to rest' });
+  }
+
+  //Testing
+  if (!req.body.health > 0){
+    return res.status(200).json({ error: 'Your character has health' });
+  }
+}
+
 const getCharacters = (request, response) => {
   const req = request;
   const res = response;
@@ -70,3 +84,4 @@ const getCharacters = (request, response) => {
 module.exports.makerPage = makerPage;
 module.exports.getCharacters = getCharacters;
 module.exports.make = makeCharacter;
+module.exports.train = trainCharacter;

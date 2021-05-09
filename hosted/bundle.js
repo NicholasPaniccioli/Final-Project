@@ -120,9 +120,21 @@ var CharacterList = function CharacterList(props) {
         className: "characterEXP"
       }, " EXP: ", character.exp), /*#__PURE__*/React.createElement("div", {
         className: "activities"
-      }, /*#__PURE__*/React.createElement("button", {
+      }), /*#__PURE__*/React.createElement("form", {
+        id: "trainForm",
+        name: "trainForm" //onSubmit={handleTrainer}
+        ,
+        action: "/trainer",
+        method: "POST",
+        className: "trainForm"
+      }, /*#__PURE__*/React.createElement("input", {
+        type: "hidden",
+        name: "_csrf",
+        value: props.csrf
+      }), /*#__PURE__*/React.createElement("button", {
         className: "trainButton",
-        value: character
+        type: "submit",
+        value: character._id
       }, "Train")))
     );
   });
@@ -137,25 +149,9 @@ var loadCharactersFromServer = function loadCharactersFromServer() {
     ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
       characters: data.characters
     }), document.querySelector("#characters"));
-  }); // let select = document.querySelector("#characterSelect");
-  // //If no characters stays at default value
-  // //If characters available fills selection with them
-  // if(characters.length === 0)
-  // {
-  //     return;
-  // } else {
-  //     //Restarts select list
-  //     select.innerHTML = ""
-  //     //Fills it in
-  //     for(let i=0; i > characters.length; i++)
-  //     {
-  //         let chara = characters[i].name;
-  //         let option = document.createElement("option");
-  //         option.innerHTML = chara;
-  //         select.addEventListener(option);
-  //     }
-  // }
-}; // const handleTrainer = (e) => {
+  });
+}; //Will be used to check if character has enough health
+// const handleTrainer = (e) => {
 //     e.preventDefault();
 //     $("characterMessage").animate({width:'hide'}, 350);
 //     if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == ''){
@@ -216,18 +212,8 @@ var setup = function setup(csrf) {
   }), document.querySelector("#makeCharacter"));
   ReactDOM.render( /*#__PURE__*/React.createElement(CharacterList, {
     characters: []
-  }), document.querySelector("#characters")); // ReactDOM.render(
-  //     <TrainWindow csrf={csrf} />, document.querySelector("#trainRoom")
-  // );
-
-  loadCharactersFromServer();
-  var trainButton = document.querySelector(".trainButton");
-  trainButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    console.log("button clicked");
-    trainButton.value.exp += 10;
-    return false;
-  }); //fillTrainSelect();
+  }), document.querySelector("#characters"));
+  loadCharactersFromServer(); //fillTrainSelect();
 };
 
 var getToken = function getToken() {
