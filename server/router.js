@@ -11,7 +11,7 @@ const router = (app) => {
   app.get('/maker', mid.requiresLogin, controllers.Character.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Character.make);
   // app.get('/trainer', mid.requiresLogin, controllers.Character.trainPage);
-  //app.post('/trainer', mid.requiresLogin, controllers.Character.train);
+  // app.post('/trainer', mid.requiresLogin, controllers.Character.train);
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 
