@@ -83,4 +83,4 @@ const getCharacters = (request, response) => {
 module.exports.makerPage = makerPage;
 module.exports.getCharacters = getCharacters;
 module.exports.make = makeCharacter;
-module.exports.train = trainCharacter;
+//module.exports.train = trainCharacter;
